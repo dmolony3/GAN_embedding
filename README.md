@@ -14,7 +14,7 @@ Edit *config.json* to set the correct value for the following:
 **singleImageDim**: Should be [image_dim,  image_dim].   
 Paths to the *vecs.tsv*, *metadata.tsv* and *sprite_image.jpg*  
 
-Finally, time to let the projector [run](http://projector.tensorflow.org/?config=https://raw.githubusercontent.com/dmolony3/projector_embedding/master/config.json). 
+Finally, time to let the projector [run](http://projector.tensorflow.org/?config=https://raw.githubusercontent.com/dmolony3/GAN_embedding/master/config.json). 
 
 ![Example sprite image](sprite_image_64x64.jpg)
 
