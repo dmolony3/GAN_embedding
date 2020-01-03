@@ -32,7 +32,7 @@ class DataReader():
         return data
 
 
-directory = '/home/microway/Documents/IVUS/Segmentation2.0/Embedding_GAN/Images'
+directory = '/home/microway/Documents/IVUS/Segmentation2.0/Embedding_GAN/Images_20MHz'
 data_file = '/home/microway/Documents/IVUS/Segmentation2.0/Embedding_GAN/generated.txt'
 num_image_rows = 60 # must be divisble by batch_size
 embedding_dim = 64
