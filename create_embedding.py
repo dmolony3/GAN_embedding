@@ -97,9 +97,9 @@ for i in range(num_images):
         print(i)
     f1.write('\t'.join([str(images[i, :].numpy()[j]) for j in range(dim)]) + "\n")
     if i < (num_image_rows**2)//2:
-        f2.write('{}\n'.format(1))
+        f2.write('{}\n'.format('fake'))
     else:
-        f2.write('{}\n'.format(2))
+        f2.write('{}\n'.format('real'))
 f1.close()
 f2.close()
 
