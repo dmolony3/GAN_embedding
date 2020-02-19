@@ -36,7 +36,7 @@ data_file = '/home/microway/Documents/IVUS/Segmentation2.0/Embedding_GAN/generat
 num_image_rows = 60 # must be divisble by batch_size
 embedding_dim = 64
 image_dim = 128
-use_PCA = 0 # flag indicating whether PCA should be applied to first reduced the dimensions to 50
+use_PCA = 1 # flag indicating whether PCA should be applied to first reduced the dimensions to 50
 
 sprite_file = 'sprite_image' + '_' + str(embedding_dim) + 'x' + str(embedding_dim) +'.jpg'
 vecs_file = 'vecs' + '_' + str(embedding_dim) + 'x' + str(embedding_dim) +'.tsv'
@@ -66,15 +66,13 @@ if use_PCA == 1:
 
     d = images.shape[0]
     n = images.shape[1]
-    data_mean = tf.reduce_mean(images, axis=0) # [d]
-    print((images1 - tf.expand_dims(data_mean, 1)).shape)
-    print(tf.transpose(images1 - tf.expand_dims(data_mean, 1), [1, 0]).shape)
-    # compute the covariance matrix
-    cov = 1/(d-1)*tf.matmul((images - tf.expand_dims(data_mean, 0)), 
-                        tf.transpose(images - tf.expand_dims(data_mean, 0), [1, 0]))
+    data_mean = tf.reduce_mean(images, axis=1) # [d]
 
-    print(cov.shape)
+    # compute the covariance matrix
+    cov = 1/(d-1)*tf.matmul((images - tf.expand_dims(data_mean, 1)), 
+                        tf.transpose(images - tf.expand_dims(data_mean, 1), [1, 0]))
     eigenvalues, eigenvectors = tf.linalg.eigh(cov)
+    
     #sort eigenvectors by decreasing values
     tf.argsort(eigenvalues, direction='DESCENDING')
     eig_pairs = [(tf.abs(eigenvalues[i]), eigenvectors[:, i]) for i in range(d)]
